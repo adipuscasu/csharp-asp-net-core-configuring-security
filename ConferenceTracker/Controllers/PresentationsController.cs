@@ -67,11 +67,11 @@ namespace ConferenceTracker.Controllers
         [Authorize(Roles = "Administrators")]
         public IActionResult Edit(int? id)
         {
-            _logger.LogInformation($@"Getting presentation id: {id} for edit");
+            _logger.LogInformation("Getting presentation id:" + id +  " for edit.");
             if (id == null)
             {
-                _logger.LogError(@"Presentation id was null.");
-                _logger.LogWarning($@"Presentation id, {id}, was not found.");
+                _logger.LogError("Presentation id was null.");
+                _logger.LogWarning("Presentation id," + id + ", was not found.");
                 return NotFound();
             }
 
@@ -81,7 +81,7 @@ namespace ConferenceTracker.Controllers
                 return NotFound();
             }
 
-            _logger.LogInformation($@"Presentation id, {id}, was found. Returning 'Edit view'");
+            _logger.LogInformation("Presentation id," + id + ", was found. Returning 'Edit view'");
 
             ViewData["SpeakerId"] = new SelectList(_speakerRepository.GetAllSpeakers(), "Id", "Id", presentation?.SpeakerId);
             return View(presentation);
